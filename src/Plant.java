@@ -9,7 +9,14 @@ public class Plant {
     private int wateringFrequency;
 
     // Konstruktor pro nastavení všech atributů
-    public Plant(String name, String notes, LocalDate planted, LocalDate watering, int wateringFrequency) {
+    public Plant(String name, String notes, LocalDate planted, LocalDate watering, int wateringFrequency)
+    throws PlantException {
+        if (wateringFrequency <= 0){
+            throw new PlantException("Frequency of watering must be a positive number !");
+        }
+        if (watering.isBefore(planted)){
+            throw new PlantException("Last watering date can´t be earlier than planting date !");
+        }
         this.name = name;
         this.notes = notes;
         this.planted = planted;
@@ -17,11 +24,11 @@ public class Plant {
         this.wateringFrequency = wateringFrequency;
     }
     // Konstruktor pro nastavení výchozích hodnot
-    public Plant(String name, String notes, LocalDate planted){
+    public Plant(String name, String notes, LocalDate planted) throws PlantException {
         this(name,notes,planted,LocalDate.now(), 7);
     }
     // Konstruktor pro nastavení výchozích hodnot s default frekvencí zalévání
-    public Plant(String name, LocalDate planted){
+    public Plant(String name, LocalDate planted) throws PlantException {
         this(name, "", planted);
     }
     // Metoda pro aktualizaci data posledního zalévání
