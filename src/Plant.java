@@ -10,7 +10,7 @@ public class Plant implements Serializable, Comparable<Plant> {
     private int wateringFrequency;
 
     public Plant(String name, String description, LocalDate planted) throws PlantException {
-        this(name, description, planted, LocalDate.now(), 7); // Default watering frequency set to 7 days
+        this(name, description, planted, LocalDate.now(), 7);
     }
 
     public Plant(String name, String description, LocalDate planted, LocalDate watering, int wateringFrequency)
@@ -29,7 +29,7 @@ public class Plant implements Serializable, Comparable<Plant> {
     }
 
     public Plant(String name, LocalDate planted) throws PlantException {
-        this(name, "", planted); // Default description is an empty string
+        this(name, "", planted);
     }
 
     public void waterPlant() {
@@ -40,8 +40,6 @@ public class Plant implements Serializable, Comparable<Plant> {
         LocalDate nextWateringDate = this.watering.plusDays(this.wateringFrequency);
         return "Name: " + this.name + ", Last Watering: " + this.watering + ", Next Watering: " + nextWateringDate;
     }
-
-    // Getters and setters
 
     public String getName() {
         return name;

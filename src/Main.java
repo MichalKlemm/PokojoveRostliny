@@ -1,14 +1,12 @@
 import java.io.*;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
         FlowerList flowerList = new FlowerList();
 
-        // 1. Načtěte seznam květin ze souboru kvetiny.txt
+        // Načtěte seznam květin ze souboru kvetiny.txt
         try (BufferedReader reader = new BufferedReader(new FileReader("kvetiny.txt"))) {
             String line;
             while ((line = reader.readLine()) != null) {
@@ -27,7 +25,6 @@ public class Main {
             e.printStackTrace();
         }
 
-        // 2. Vypíšu informace o zálivce pro všechny květiny
         System.out.println("\nInformace o zálévání pro všechny květiny:");
         for (int i = 0; i < flowerList.getSize(); i++) {
             Plant flower = flowerList.getFlower(i);
@@ -35,7 +32,6 @@ public class Main {
         }
         System.out.println();
 
-        // 3. Přidám dvě nové květiny do seznamu
         try {
             flowerList.addFlower(new Plant("Avokádo", "Krásné velké listy", LocalDate.now()));
             flowerList.addFlower(new Plant("Citrónovník", "Krásná rostlina, listy voní po citrónech", LocalDate.now()));
@@ -44,10 +40,9 @@ public class Main {
             e.printStackTrace();
         }
 
-        // 4. Odeberu jednu květinu ze seznamu
         flowerList.removeFlower(0); // Odebíráme první květinu ze seznamu
 
-        // 5. Uložím seznam květin do nového souboru
+        // Uložení do nového souboru
         try {
             flowerList.exportToFile("novy_seznam_kvetin.txt");
         } catch (IOException e) {
@@ -55,7 +50,7 @@ public class Main {
             e.printStackTrace();
         }
 
-        // 6. Ověřím, že obsah nového souboru je správný
+        // Ověření, že obsah nov. souboru je správný
         System.out.println("Obsah nového souboru:");
         try (BufferedReader reader = new BufferedReader(new FileReader("novy_seznam_kvetin.txt"))) {
             String line;
@@ -66,7 +61,8 @@ public class Main {
             System.err.println("Chyba při čtení nového souboru.");
             e.printStackTrace();
         }
-        try (BufferedReader reader = new BufferedReader(new FileReader("C:\\Users\\Public\\IntelliJ\\cviceni\\PokojoveRostliny\\kvetiny.txt"))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader
+                ("C:\\Users\\Public\\IntelliJ\\cviceni\\PokojoveRostliny\\kvetiny.txt"))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 System.out.println(line);
@@ -79,16 +75,14 @@ public class Main {
         // Seřazení květin podle názvu
         Collections.sort(flowerList.getFlower());
 
-        // Vypsání seřazených květin
         System.out.println("Seřazené rostliny podle názvu:");
         for (Plant flower : flowerList.getFlower()) {
             System.out.println(flower.getName());
         }
 
-        // 10. Seřazení květin podle data poslední zálivky
+        // 10. Seřazení květin podle data zalévání
         Collections.sort(flowerList.getFlower(), (flower1, flower2) -> flower1.getWatering().compareTo(flower2.getWatering()));
 
-        // 11. Vypsání seřazených květin podle data poslední zálivky
         System.out.println("\nSeřazené rostliny podle data poslední zálivky:");
         for (Plant flower : flowerList.getFlower()) {
             System.out.println(flower.getName() + ": " + flower.getWatering());

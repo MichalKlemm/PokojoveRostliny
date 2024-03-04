@@ -54,7 +54,8 @@ public class FlowerList {
                 LocalDate watering = LocalDate.parse(parts[4]);
 
                 if (wateringFrequency == 365) {
-                    // Pokud je frekvence zalévání 365 (což značí, že se rostlina nezalévá), nastavíme datum zalévání na stejný den jako datum zasazení
+                    // Pokud je frekvence zalévání 365 (což značí, že se rostlina nezalévá),
+                    // nastavím datum zalévání na stejný den jako datum zasazení
                     watering = planted;
                 }
 
