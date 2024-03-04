@@ -84,6 +84,15 @@ public class Main {
         for (Plant flower : flowerList.getFlower()) {
             System.out.println(flower.getName());
         }
+
+        // 10. Seřazení květin podle data poslední zálivky
+        Collections.sort(flowerList.getFlower(), (flower1, flower2) -> flower1.getWatering().compareTo(flower2.getWatering()));
+
+        // 11. Vypsání seřazených květin podle data poslední zálivky
+        System.out.println("\nSeřazené rostliny podle data poslední zálivky:");
+        for (Plant flower : flowerList.getFlower()) {
+            System.out.println(flower.getName() + ": " + flower.getWatering());
+        }
     }
 }
 
